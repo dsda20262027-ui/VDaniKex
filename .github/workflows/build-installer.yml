@@ -58,8 +58,11 @@ jobs:
           if (-not (Test-Path $iscc)) {
             throw "Inno Setup compiler not found at $iscc"
           }
-          New-Item -ItemType Directory -Force -Path dist | Out-Null
-          & $iscc "/DAppArch=${{ matrix.arch }}" "/DSourceDir=build\Release" "/Odist" "installer\VDaniKex.iss"
+          $sourceDir = Join-Path $env:GITHUB_WORKSPACE "build\Release"
+          $outputDir = Join-Path $env:GITHUB_WORKSPACE "dist"
+          $scriptPath = Join-Path $env:GITHUB_WORKSPACE "installer\VDaniKex.iss"
+          New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
+          & $iscc "/DAppArch=${{ matrix.arch }}" "/DSourceDir=$sourceDir" "/O$outputDir" $scriptPath
           if ($LASTEXITCODE -ne 0) {
             throw "ISCC failed with exit code $LASTEXITCODE"
           }
