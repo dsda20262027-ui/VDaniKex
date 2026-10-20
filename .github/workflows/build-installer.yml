@@ -19,7 +19,7 @@ permissions:
 jobs:
   build:
     name: Build ${{ matrix.arch }} installer
-    runs-on: windows-2019
+    runs-on: windows-2022
     strategy:
       fail-fast: false
       matrix:
