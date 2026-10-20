@@ -8,6 +8,7 @@ on:
       - "include/**"
       - "installer/**"
       - "CMakeLists.txt"
+      - "docs/**"
       - ".github/workflows/build-installer.yml"
   pull_request:
     branches: [main]
@@ -45,6 +46,14 @@ jobs:
           & ".\build\Release\vdk-probe.exe"
           if ($LASTEXITCODE -ne 0) {
             throw "vdk-probe failed with exit code $LASTEXITCODE"
+          }
+
+      - name: Run VM launcher smoke test
+        shell: pwsh
+        run: |
+          & ".\build\Release\vdk-vm.exe" --self-test
+          if ($LASTEXITCODE -ne 0) {
+            throw "vdk-vm self-test failed with exit code $LASTEXITCODE"
           }
 
       - name: Install Inno Setup
