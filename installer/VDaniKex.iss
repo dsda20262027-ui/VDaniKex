@@ -8,9 +8,14 @@
 
 #define ProductName "VDaniKex"
 #define ProductVersion "0.1.0-dev"
+#if AppArch == "x64"
+  #define ProductAppId "{{B5D91D3A-8E19-4D22-9B62-A19E7FCD3022}"
+#else
+  #define ProductAppId "{{A4C80E0A-8B16-4D89-8CB8-DC5B6A7E0211}"
+#endif
 
 [Setup]
-AppId={{A4C80E0A-8B16-4D89-8CB8-DC5B6A7E0211}
+AppId={#ProductAppId}
 AppName={#ProductName} ({#AppArch})
 AppVersion={#ProductVersion}
 AppPublisher=VDaniKex contributors
