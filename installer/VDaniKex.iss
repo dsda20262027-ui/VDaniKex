@@ -43,18 +43,20 @@ ArchitecturesAllowed=x86 x64
 Source: "{#SourceDir}\VDaniKexCore.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceDir}\vdk-probe.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourceDir}\vdk-vm.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourceDir}\vdk-manager.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\README.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\docs\VM-LAUNCHER.md"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
+Name: "{group}\VDaniKex VM Manager"; Filename: "{app}\vdk-manager.exe"
 Name: "{group}\VDaniKex Host Diagnostic"; Filename: "{app}\vdk-probe.exe"
 Name: "{group}\VDaniKex VM Launcher Help"; Filename: "{app}\vdk-vm.exe"; Parameters: "--help"
 Name: "{group}\VDaniKex Project README"; Filename: "{app}\README.md"
 
 [Run]
+Filename: "{app}\vdk-manager.exe"; Description: "Launch VDaniKex VM Manager"; Flags: postinstall nowait skipifsilent
 Filename: "{app}\vdk-probe.exe"; Description: "Run VDaniKex host diagnostic"; Flags: postinstall nowait skipifsilent
-Filename: "{app}\vdk-vm.exe"; Parameters: "--help"; Description: "Show VDaniKex VM launcher help"; Flags: postinstall nowait skipifsilent
 
 [Code]
 function InitializeSetup(): Boolean;
