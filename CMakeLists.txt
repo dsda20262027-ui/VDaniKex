@@ -18,6 +18,8 @@ target_compile_definitions(vdk-probe PRIVATE WIN32_LEAN_AND_MEAN NOMINMAX)
 if(MSVC)
     target_compile_options(VDaniKexCore PRIVATE /W4 /permissive-)
     target_compile_options(vdk-probe PRIVATE /W4 /permissive-)
+    # This subsystem version is a baseline declaration, not proof of OS compatibility.
+    target_link_options(vdk-probe PRIVATE /SUBSYSTEM:CONSOLE,6.01)
 else()
     target_compile_options(VDaniKexCore PRIVATE -Wall -Wextra -Wpedantic)
     target_compile_options(vdk-probe PRIVATE -Wall -Wextra -Wpedantic)
